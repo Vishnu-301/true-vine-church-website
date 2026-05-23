@@ -1,9 +1,26 @@
+import FooterBrand from "../footer/footerBrand";
+import FooterColumn from "../footer/footerColumn";
+import FooterLinks from "../footer/footerLinks";
+import FooterContact from "../footer/footerContact";
+import FooterSocial from "../footer/footerSocial";
+import FooterBottom from "../footer/footerBottom";
+
 function Footer() {
     return (
-        <footer className="bg-gray-100 text-gray-700 text-center py-8 mt-12">
-            <div className="container mx-auto px-4">
-                <p>&copy; 2026 True Vine Church. All rights reserved.</p>
+        <footer className="bg-blue-950 text-white py-16">
+            <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-4 gap-10">
+                <FooterBrand />
+                <FooterColumn title="Quick Links">
+                    <FooterLinks />
+                </FooterColumn>
+                <FooterColumn title="Contact">
+                    <FooterContact />
+                </FooterColumn>
+                <FooterColumn title="Follow Us">
+                    <FooterSocial />
+                </FooterColumn>
             </div>
+            <FooterBottom />
         </footer>
     );
 }

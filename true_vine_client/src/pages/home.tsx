@@ -3,7 +3,6 @@ import Footer from "../components/common/footer";
 import HeroSection from "../components/home/heroSection";
 import WelcomeSection from "../components/home/welcomeSection";
 import AboutSection from "../components/home/aboutSection";
-import MinistriesSection from "../components/home/ministriesSection";
 import ServicesSection from "../components/home/servicesSection";
 
 function HomePage() {
@@ -14,7 +13,6 @@ function HomePage() {
                 <HeroSection />
                 <WelcomeSection />
                 <AboutSection />
-                <MinistriesSection />
                 <ServicesSection />
             </main>
             <Footer />

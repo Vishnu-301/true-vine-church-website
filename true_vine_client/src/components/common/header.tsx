@@ -21,11 +21,11 @@ function Header() {
                 <Navbar />
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-4">
-                    <Link to="/connect" className="text-gray-700 hover:text-blue-600 font-medium text-sm transition">
+                <div className="flex items-center gap-2">
+                    {/* <Link to="/connect" className="text-gray-700 hover:text-blue-600 font-medium text-sm transition">
                         Sign In
-                    </Link>
-                    <Link to="/connect" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-medium text-sm transition">
+                    </Link> */}
+                    <Link to="/connect" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition">
                         Join Us
                     </Link>
                 </div>

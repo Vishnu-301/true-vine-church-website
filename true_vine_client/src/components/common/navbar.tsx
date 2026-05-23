@@ -5,7 +5,6 @@ function Navbar() {
         <nav className="hidden lg:flex items-center gap-12 flex-1 justify-center">
             <NavLink to="/" name="Home" />
             <NavLink to="/about" name="About" />
-            <NavLink to="/ministries" name="Ministries" />
             <NavLink to="/services" name="Services" />
             <NavLink to="/events" name="Events" />
             <NavLink to="/connect" name="Connect" />

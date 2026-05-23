@@ -9,14 +9,14 @@ function FooterLinks() {
                 </Link>
             </li>
             <li>
-                <a href="#" className="hover:text-white transition">
-                    Sermons
-                </a>
+                <Link to="/events" className="hover:text-white transition">
+                    Events
+                </Link>
             </li>
             <li>
-                <a href="#" className="hover:text-white transition">
-                    Give
-                </a>
+                <Link to="/services" className="hover:text-white transition">
+                    Services
+                </Link>
             </li>
         </ul>
     );

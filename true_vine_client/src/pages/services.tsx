@@ -142,7 +142,7 @@ function ServicesPage() {
                                         {activity.events.map((event, eventIdx) => (
                                             <div key={eventIdx} className="mb-6 last:mb-0">
                                                 <div className="flex items-start gap-4">
-                                                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center p-2">
+                                                    <div className="shrink-0 w-12 h-12 bg-linear-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center p-2">
                                                         <img src={event.icon} alt={event.name} className="w-8 h-8 filter brightness-0 invert" />
                                                     </div>
                                                     <div className="flex-1">
@@ -168,7 +168,7 @@ function ServicesPage() {
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="text-center">
                                 <div className="flex justify-center mb-4">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center p-3">
+                                    <div className="w-16 h-16 bg-linear-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center p-3">
                                         <img src={group} alt="Community" className="w-10 h-10 filter brightness-0 invert" />
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@ function ServicesPage() {
                             </div>
                             <div className="text-center">
                                 <div className="flex justify-center mb-4">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center p-3">
+                                    <div className="w-16 h-16 bg-linear-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center p-3">
                                         <img src={cross} alt="Growth" className="w-10 h-10 filter brightness-0 invert" />
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@ function ServicesPage() {
                             </div>
                             <div className="text-center">
                                 <div className="flex justify-center mb-4">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center p-3">
+                                    <div className="w-16 h-16 bg-linear-to-br from-blue-500 to-purple-500 rounded-lg flex items-center justify-center p-3">
                                         <img src={prayer} alt="Transformation" className="w-10 h-10 filter brightness-0 invert" />
                                     </div>
                                 </div>

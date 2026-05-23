@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
 import time from "../assets/icons/time.svg";
@@ -28,6 +29,19 @@ interface ChurchEvent {
 }
 
 function EventsPage() {
+    const [selectedEvent, setSelectedEvent] = useState<ChurchEvent | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const handleLearnMore = (event: ChurchEvent) => {
+        setSelectedEvent(event);
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        setTimeout(() => setSelectedEvent(null), 300); // allow fade out animation
+    };
+
     const events: ChurchEvent[] = [
         {
             id: 1,
@@ -163,21 +177,6 @@ function EventsPage() {
         }
     ];
 
-    const getEventColor = (category: string) => {
-        const colors: { [key: string]: string } = {
-            Holiday: "from-red-500 to-pink-500",
-            Worship: "from-blue-500 to-purple-500",
-            Prayer: "from-green-500 to-emerald-500",
-            Fasting: "from-orange-500 to-amber-500",
-            Anniversary: "from-yellow-500 to-orange-500",
-            Spiritual: "from-indigo-500 to-blue-500",
-            Youth: "from-pink-500 to-rose-500",
-            Women: "from-purple-500 to-pink-500",
-            Men: "from-slate-500 to-gray-500"
-        };
-        return colors[category] || "from-blue-500 to-purple-500";
-    };
-
     return (
         <>
             <Header />
@@ -248,7 +247,10 @@ function EventsPage() {
                                         <p className="text-gray-600 text-sm leading-relaxed mb-4">
                                             {event.description}
                                         </p>
-                                        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition">
+                                        <button 
+                                            onClick={() => handleLearnMore(event)}
+                                            className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition"
+                                        >
                                             Learn More
                                         </button>
                                     </div>
@@ -269,6 +271,62 @@ function EventsPage() {
                         </button>
                     </section>
                 </div>
+
+                {/* Event Modal */}
+                {isModalOpen && selectedEvent && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                        {/* Backdrop */}
+                        <div 
+                            className="absolute inset-0 bg-black/40 backdrop-blur-md transition-opacity animate-fade-in"
+                            onClick={closeModal}
+                        ></div>
+                        
+                        {/* Modal Content */}
+                        <div className="relative bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-slide-up">
+                            <div className="relative h-64 bg-cover bg-center" style={{ backgroundImage: `url(${selectedEvent.image})` }}>
+                                <div className="absolute inset-0 bg-black/20"></div>
+                                <button 
+                                    onClick={closeModal}
+                                    className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white w-8 h-8 rounded-full flex items-center justify-center transition"
+                                >
+                                    &times;
+                                </button>
+                            </div>
+                            <div className="p-8">
+                                <div className="flex items-center gap-3 mb-4">
+                                    <span className="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                                        {selectedEvent.category}
+                                    </span>
+                                    <span className="text-gray-500 text-sm font-medium">
+                                        {selectedEvent.month} {selectedEvent.date}
+                                    </span>
+                                </div>
+                                <h2 className="text-3xl font-bold text-gray-900 mb-4">{selectedEvent.title}</h2>
+                                <div className="flex flex-col gap-3 mb-6 bg-gray-50 p-4 rounded-xl">
+                                    <div className="flex items-center gap-3">
+                                        <img src={time} alt="time" className="w-5 h-5 opacity-70" />
+                                        <span className="text-gray-700 font-medium">{selectedEvent.time}</span>
+                                    </div>
+                                    <div className="flex items-center gap-3">
+                                        <img src={pin} alt="location" className="w-5 h-5 opacity-70" />
+                                        <span className="text-gray-700 font-medium">{selectedEvent.location}</span>
+                                    </div>
+                                </div>
+                                <div className="prose max-w-none text-gray-600">
+                                    <p className="text-lg leading-relaxed mb-4">{selectedEvent.description}</p>
+                                    <p>
+                                        We invite you to join us for this special occasion. Our community comes together to celebrate, worship, and grow in faith. Please arrive a few minutes early to find seating. We look forward to seeing you there!
+                                    </p>
+                                </div>
+                                <div className="mt-8">
+                                    <button onClick={closeModal} className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-bold transition shadow-lg hover:shadow-xl">
+                                        Close Details
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
             </main>
             <Footer />
         </>

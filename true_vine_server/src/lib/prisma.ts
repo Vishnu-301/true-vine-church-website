@@ -1,6 +1,6 @@
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
-// import {PrismaClient} from '@prisma/client';
+import {PrismaClient} from '@prisma/client';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -13,4 +13,4 @@ const pool = new Pool(
 
 const adapter = new PrismaPg(pool);
 
-// export const clientServer = new PrismaClient({adapter});
+export const clientServer = new PrismaClient({adapter});

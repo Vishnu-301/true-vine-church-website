@@ -5,6 +5,7 @@ import AboutPage from "./pages/about";
 import ServicesPage from "./pages/services";
 import EventsPage from "./pages/events";
 import ConnectPage from "./pages/connect";
+import Dashboard from "./pages/dashboard";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/events" element={<EventsPage />} />
         <Route path="/connect" element={<ConnectPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );

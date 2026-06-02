@@ -7,7 +7,7 @@ sgMail.setApiKey(process.env.EMAIL_API_KEY!);
 export const registerSubscriber = async (req: Request, res: Response) => {
     try {
         const { email } = req.body;
-        const subscriber = await client.suscribers.create({ data: { email } });
+        const subscriber = await client.subscribers.create({ data: { email } });
         res.json({ success: true, subscriber });
     } catch (error: any) {
         if (error.code === 'P2002') {
@@ -19,10 +19,10 @@ export const registerSubscriber = async (req: Request, res: Response) => {
 
 export const broadcastEvent = async (req: Request, res: Response) => {
     try {
-        const { subject, text, html } = req.body;
+        const { subject, text, html }: any = req.body;
 
         // Fetch all emails from the database
-        const subscribers = await client.suscribers.findMany({
+        const subscribers = await client.subscribers.findMany({
             select: { email: true }
         });
 

@@ -5,6 +5,7 @@ import HeroSection from "../components/home/heroSection";
 import WelcomeSection from "../components/home/welcomeSection";
 import AboutSection from "../components/home/aboutSection";
 import ServicesSection from "../components/home/servicesSection";
+import SubscriptionBox from "../components/home/subscriptionBox";
 
 function HomePage() {
     const [showPopup, setShowPopup] = useState(false);
@@ -25,6 +26,7 @@ function HomePage() {
                 <WelcomeSection />
                 <AboutSection />
                 <ServicesSection />
+                <SubscriptionBox />
 
                 {/* Mini Popup */}
                 {showPopup && (

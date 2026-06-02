@@ -12,9 +12,9 @@ const port = process.env.PORT || 3000
 app.use(cors())
 app.use(bodyParser.json())
 
-app.use("/api/dashboard", dashboardRoutes)
+app.use("/api", dashboardRoutes)
 
-app.get("/api", (req, res) => {
+app.get('/api', (req, res) => {
   res.json({ message: "Welcome to the True Vine API!" })
 })
 

@@ -6,7 +6,7 @@ datasource db {
   provider = "postgresql"
 }
 
-model Suscribers {
+model Subscribers {
   id        Int      @id @default(autoincrement())
   email     String   @unique
   createdAt DateTime @default(now())

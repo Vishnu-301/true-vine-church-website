@@ -1,9 +1,52 @@
+import { useState } from "react";
 import Header from "../components/common/header";
 import Footer from "../components/common/footer";
 import pin from "../assets/icons/pin.svg";
 import time from "../assets/icons/time.svg";
+import { baseURL } from "../config/api";
 
 function ConnectPage() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+    });
+    const [loading, setLoading] = useState(false);
+    const [feedback, setFeedback] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setFeedback(null);
+
+        try {
+            const response = await fetch(`${baseURL}/api/contact`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.success) {
+                setFeedback({ type: "success", text: data.message });
+                setFormData({ name: "", email: "", subject: "", message: "" });
+            } else {
+                setFeedback({ type: "error", text: data.message || "Something went wrong. Please try again." });
+            }
+        } catch {
+            setFeedback({ type: "error", text: "Network error. Please check your connection and try again." });
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <>
             <Header />
@@ -73,12 +116,26 @@ function ConnectPage() {
                                 <div className="relative z-10">
                                     <h2 className="text-4xl font-extrabold text-gray-900 mb-8">Send a Message</h2>
                                     
-                                    <form className="space-y-8">
+                                    {feedback && (
+                                        <div className={`mb-6 p-4 rounded-xl text-sm ${
+                                            feedback.type === "success" 
+                                                ? "bg-green-50 text-green-700 border border-green-200" 
+                                                : "bg-red-50 text-red-700 border border-red-200"
+                                        }`}>
+                                            {feedback.text}
+                                        </div>
+                                    )}
+
+                                    <form onSubmit={handleSubmit} className="space-y-8">
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                             <div>
                                                 <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
                                                 <input 
                                                     type="text" 
+                                                    name="name"
+                                                    value={formData.name}
+                                                    onChange={handleChange}
+                                                    required
                                                     className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 outline-none"
                                                     placeholder="John Doe"
                                                 />
@@ -87,6 +144,10 @@ function ConnectPage() {
                                                 <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
                                                 <input 
                                                     type="email" 
+                                                    name="email"
+                                                    value={formData.email}
+                                                    onChange={handleChange}
+                                                    required
                                                     className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 outline-none"
                                                     placeholder="john@example.com"
                                                 />
@@ -97,6 +158,10 @@ function ConnectPage() {
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
                                             <input 
                                                 type="text" 
+                                                name="subject"
+                                                value={formData.subject}
+                                                onChange={handleChange}
+                                                required
                                                 className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 outline-none"
                                                 placeholder="How can we help you?"
                                             />
@@ -106,16 +171,21 @@ function ConnectPage() {
                                             <label className="block text-sm font-semibold text-gray-700 mb-2">Your Message</label>
                                             <textarea 
                                                 rows={5}
+                                                name="message"
+                                                value={formData.message}
+                                                onChange={handleChange}
+                                                required
                                                 className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl focus:ring-4 focus:ring-blue-100 focus:border-blue-500 transition-all duration-200 outline-none resize-none"
                                                 placeholder="Write your message here..."
                                             ></textarea>
                                         </div>
 
                                         <button 
-                                            type="button"
-                                            className="w-full md:w-auto px-10 py-4 bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
+                                            type="submit"
+                                            disabled={loading}
+                                            className="w-full md:w-auto px-10 py-4 bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 disabled:opacity-50"
                                         >
-                                            Send Message
+                                            {loading ? "Sending..." : "Send Message"}
                                         </button>
                                     </form>
                                 </div>

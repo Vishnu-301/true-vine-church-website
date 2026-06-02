@@ -42,7 +42,7 @@ export default function SubscriptionBox() {
     };
 
     return (
-        <section className="py-12 px-4 bg-gradient-to-r from-blue-50 to-purple-50">
+        <section className="py-12 px-4 bg-linear-to-r from-blue-50 to-purple-50">
             <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-8 border-l-4 border-blue-600">
                 <h3 className="text-2xl font-bold text-gray-900 mb-2">Stay Connected</h3>
                 <p className="text-gray-600 text-sm mb-6">

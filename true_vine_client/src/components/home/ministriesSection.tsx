@@ -35,7 +35,7 @@ function MinistriesSection() {
     ];
 
     return (
-        <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
+        <section className="py-20 bg-linear-to-b from-blue-50 to-white">
             <div className="max-w-6xl mx-auto px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Our Ministries</h2>
@@ -55,7 +55,7 @@ function MinistriesSection() {
                 </div>
 
                 <div className="text-center">
-                    <Link to="/ministries" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition">
+                    <Link to="/services" className="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition">
                         Explore All Ministries →
                     </Link>
                 </div>

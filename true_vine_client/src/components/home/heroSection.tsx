@@ -17,10 +17,10 @@ function HeroSection() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#" className="bg-white text-blue-700 hover:bg-blue-50 px-10 py-4 rounded-full text-lg font-semibold">
-                        Watch Live Service
+                    <a href="/services" className="bg-white text-blue-700 hover:bg-blue-50 px-10 py-4 rounded-full text-lg font-semibold transition">
+                        View Our Services
                     </a>
-                    <a href="#" className="border-2 border-white hover:bg-white/20 px-10 py-4 rounded-full text-lg font-semibold">
+                    <a href="/connect" className="border-2 border-white hover:bg-white/20 px-10 py-4 rounded-full text-lg font-semibold transition">
                         Visit This Sunday
                     </a>
                 </div>

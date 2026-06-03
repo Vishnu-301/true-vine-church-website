@@ -13,7 +13,7 @@ export const sendContactMessage = async (req: Request, res: Response) => {
 
         const msg = {
             to: process.env.EMAIL_SENDER || "true.vine@gmail.com",
-            from: process.env.EMAIL_SENDER || "true.vine@gmail.com",
+            from: process.env.EMAIL_SENDER || "ifyifeanyi301@gmail.com",
             replyTo: email,
             subject: `[True Vine Contact] ${subject}`,
             text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,

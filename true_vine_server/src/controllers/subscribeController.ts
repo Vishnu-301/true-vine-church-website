@@ -35,7 +35,7 @@ export const broadcastEvent = async (req: Request, res: Response) => {
         // sending mails to all subscribers securely without exposing other emails
         const msg = {
             to: emails,
-            from: process.env.EMAIL_SENDER || 'test@test.com', // Change to your verified sender
+            from: process.env.EMAIL_SENDER || 'ifyifeanyi301@gmail.com', // Change to your verified sender
             subject: subject || 'Update from True Vine',
             text: text || 'A new update has been posted.',
             html: html || `<strong>${text || 'A new update has been posted.'}</strong>`,

@@ -11,7 +11,7 @@ const app = express()
 const port = process.env.PORT || 3000
 
 const allowedOrigins = [
-  process.env.CLIENT_URL || "true-vine-church-website.vercel.app",
+  process.env.CLIENT_URL || "https://true-vine-church-website-i8itfvv4k-ifyifeanyi301-5122s-projects.vercel.app/",
 ]
 
 app.use(cors({
